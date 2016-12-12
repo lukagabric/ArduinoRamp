@@ -10,7 +10,9 @@
 
 #pragma mark - Constructor
 
-LLowPassFilter::LLowPassFilter(double RC, double dt) {
+LLowPassFilter::LLowPassFilter(double initialValue, double RC, double dt) {
+    _currentRawValue = initialValue;
+    _currentFilteredValue = initialValue;
     _RC = RC;
     _dt = dt;
     updateAlpha();

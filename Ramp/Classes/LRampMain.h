@@ -11,12 +11,14 @@
 
 #include "LSharpIR.h"
 #include "LRampController.h"
+#include "LLowPassFilter.h"
 
 class LRampMain {
 private:
     LSharpIR *_sharpIR;
     LRampController *_rampController;
-    
+    LLowPassFilter *_filter;
+
 public:
     LRampMain();
     

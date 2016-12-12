@@ -14,7 +14,7 @@ private:
     double _alpha, _dt, _RC, _currentFilteredValue, _currentRawValue;
     void updateAlpha();
 public:
-    LLowPassFilter(double RC, double dt);
+    LLowPassFilter(double initialValue, double RC, double dt);
     
     void setRC(double RC);
     double RC();

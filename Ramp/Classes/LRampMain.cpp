@@ -11,6 +11,7 @@
 #pragma mark - Constructor
 
 LRampMain::LRampMain() {
+    _filter = new LLowPassFilter(0, 0.15, 0.05);
 }
 
 #pragma mark - Lifecycle
@@ -25,10 +26,11 @@ void LRampMain::setup() {
 
 void LRampMain::loop() {
     float distance = _sharpIR->measureDistance();
-    Serial.println(distance);
-    if (distance < 20) {
+    float filteredDistance = _filter->filterValue(distance);
+    Serial.print("Distance: ");Serial.print(distance);Serial.print("\tFiltered distance: ");Serial.println(filteredDistance);
+    if (filteredDistance < 30) {
         _rampController->openRamp();
-    } else {
+    } else if (filteredDistance > 33) {
         _rampController->closeRamp();
     }
 }
